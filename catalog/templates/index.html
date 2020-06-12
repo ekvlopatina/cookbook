@@ -1,0 +1,19 @@
+{%extends "base.html"%}
+{%block sidebar%}
+<body class="index">
+  <nav>
+    <ul class="navigation">
+      <li class="logo-left"><a href="">Cookbook</a></li>
+      <li><a href="{%url 'main_courses'%}">Вторые блюда</a></li>
+      <li><a href="{%url 'salads'%}">Салаты</a></li>
+      <li><a href="{%url 'desserts'%}">Десерты</a></li>
+    </ul>
+  </nav>
+{%endblock%}
+{%block content%}
+<div>
+  <p class="noteblock">В Cookbook собраны рецепты {{num_dish}} блюд </p>
+  <p class="noteblock">Здесь Вы можете найти простые и при этом полезные рецепты на любой вкус</p>
+  <p class="noteblock">Приятного аппетита!</p>
+</div>
+{%endblock%}

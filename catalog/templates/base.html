@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    {%block title%}
+    <title>Cookbook</title>
+    {%endblock%}
+    {%load static%}
+    <link href="{%static 'css/styles.css'%}" type="text/css" rel="stylesheet">
+  </head>
+  {%block sidebar%}
+  <body class="dish">
+    <nav>
+      <ul class="navigation">
+        <li class="logo-left"><a href="{%url 'index'%}">Cookbook</a></li>
+        <li><a href="{%url 'main_courses'%}">Вторые блюда</a></li>
+        <li><a href="{%url 'salads'%}">Салаты</a></li>
+        <li><a href="{%url 'desserts'%}">Десерты</a></li>
+      </ul>
+    </nav>
+    {%endblock%}
+    {%block content%}
+    {%endblock%}
+  </body>
+</html>

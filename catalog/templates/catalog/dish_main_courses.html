@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+{% load static %}
+{%block title%}
+<title class="new">Main Courses</title>
+{%endblock%}
+{%block content%}
+<ul>
+  {%for main_course in dish_list%}
+  {%if main_course.category.name == "Вторые блюда"%}
+    <li>
+      <ul class="recipe_block">
+        <li class="name">{{main_course.name}}</li>
+        <div class="photo_block">
+          <li>Ингредиенты: {{main_course.ingredients|linebreaks}}</li>
+          <li class="photo"><img src="{{main_course.photo.url}}" height="250" width="250"></li>
+        </div>
+        <li class="recipe">Способ приготовления: {{main_course.recipe|linebreaks}}</li>
+      </ul>
+    </li>
+  {%endif%}
+  {%endfor%}
+</ul>
+{%endblock%}

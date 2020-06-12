@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+{% load static %}
+{%block title%}
+<title class="new">Desserts</title>
+{%endblock%}
+{%block content%}
+<ul>
+  {%for dessert in dish_list%}
+  {%if dessert.category.name == "Десерты"%}
+    <li>
+      <ul class="recipe_block">
+        <li class="name">{{dessert.name}}</li>
+        <div class="photo_block">
+          <li>Ингредиенты:{{dessert.ingredients|linebreaks}}</li>
+          <li class="photo"><img src="{{dessert.photo.url}}" height="250" width="250"></li>
+        </div>
+        <li class="recipe">Способ приготовления:{{dessert.recipe|linebreaks}}</li>
+      </ul>
+    </li>
+  {%endif%}
+  {%endfor%}
+</ul>
+{%endblock%}
