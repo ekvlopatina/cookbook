@@ -48,6 +48,7 @@
   margin-left: 20px;
   padding: 10px;
   border: 4px groove #9bc1e6;
+  background-color: rgba(22, 39, 57, 0.5);
 }
 
 .recipe_block {
@@ -73,4 +74,139 @@
   display: flex;
   width: 800px;
   justify-content: space-between;
+}
+
+.indexblock {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+a {
+color: #ffffff;
+}
+a:hover,
+a:focus,
+a:active {
+opacity: 0.7;
+}
+
+.button,
+a.button {
+display: inline-block;
+margin: 5px;
+padding: 20px 40px;
+background-color: #ffffff;
+color: rgb(48, 79, 106);
+border-radius: 4px;
+text-decoration: none;
+border: none;
+font-size: 25px;
+font-family: "arial";
+}
+
+.button:hover,
+.button:focus,
+.button:active,
+a.button:hover,
+a.button:focus,
+a.button:active {
+opacity: 0.7;
+}
+.recipe_block {
+position: relative;
+list-style: none;
+padding-right: 20px;
+}
+.star-button {
+position: absolute;
+top: 20px;
+right: 50px;
+max-width: 100px;
+background: none;
+border: none;
+}
+.star-button:hover,
+.star-button:focus,
+.star-button:active {
+opacity: 0.7;
+}
+.star-button img {
+max-width: 100%;
+height: auto;
+}
+.star-comment {
+position: absolute;
+text-align: right;
+top: 100px;
+right: 50px;
+max-width: 250px;
+}
+.bookmark-ul {
+list-style: none;
+}
+.bookmark-link {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: flex-start;
+text-decoration: none;
+}
+.bookmark-link > *:not(:last-child) {
+margin-right: 20px;
+}
+.bookmark-img {
+width: 100px;
+height: 100px;
+display: inline-block;
+border-radius: 50%;
+background-repeat: no-repeat;
+background-size: cover;
+}
+.bookmark-ul > * {
+margin-bottom: 20px;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: flex-start;
+}
+.bookmark-img.delete-bookmark {
+background-color: transparent;
+border: none;
+margin-left: 50px;
+background-image: url("X.png");
+width: 40px;
+height: 40px;
+opacity: 0.7;
+}
+.bookmark-img.delete-bookmark:hover,
+.bookmark-img.delete-bookmark:focus,
+.bookmark-img.delete-bookmark:active {
+opacity: 1;
+}
+body > * {
+width: 1200px;
+display: block;
+margin: 0 auto !important;
+}
+body {
+background-position: top center !important;
+background-size: cover !important;
+background-attachment: fixed !important;
+}
+.di-list {
+background-color: rgba(22, 39, 57, 0.7);
+}
+.di-list > ul {
+margin-bottom: 50px;
+}
+.di-list > ul > * {
+margin-bottom: 50px;
+}
+.about-img {
+display: block;
+margin: 0 auto;
+border-radius: 4px;
+max-width: 900px;
+margin-bottom: 40px;
 }

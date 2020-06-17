@@ -7,13 +7,76 @@
       <li><a href="{%url 'main_courses'%}">Вторые блюда</a></li>
       <li><a href="{%url 'salads'%}">Салаты</a></li>
       <li><a href="{%url 'desserts'%}">Десерты</a></li>
+      <li><a href="{%url 'about'%}">О нас</a></li>
+      <li>
+        {% if request.user.is_authenticated%}
+        <a href="{%url 'profile'%}">Профиль</a></li>
+        {%endif%}
+      <li>
+      <li>
+        {% if request.user.is_authenticated%}
+          <a href="{%url 'logout'%}">Выйти</a>
+        {%else%}
+          <a href="{%url 'login'%}">Войти</a>
+        {%endif%}
+      </li>
     </ul>
   </nav>
 {%endblock%}
 {%block content%}
-<div>
-  <p class="noteblock">В Cookbook собраны рецепты {{num_dish}} блюд </p>
-  <p class="noteblock">Здесь Вы можете найти простые и при этом полезные рецепты на любой вкус</p>
-  <p class="noteblock">Приятного аппетита!</p>
+<main class="indexblock">
+  <div>
+    <p class="noteblock">В Cookbook собраны рецепты {{num_dish}} блюд </p>
+    <p class="noteblock">Приятного аппетита!</p>
+  </div>
+  <div>
+  <p class="noteblock">Здесь Вы можете найти простые и полезные рецепты на любой вкус</p>
+  <p class="noteblock">Bon appetit!</p>
+  </div>
+</main>
+<div class="di-list">
+  <ul>
+    <h2>Вторые блюда</h2>
+    {% for dish in dish_main_courses %}
+      <ul class="recipe_block">
+          <li class="name">{{dish.name}}</li>
+          <div class="photo_block">
+            <li>Ингредиенты:{{dish.ingredients|linebreaks}}</li>
+            <li class="photo"><img src="{{dish.photo.url}}" height="250" width="250"></li>
+          </div>
+          <a class="button" href="{% url 'dish' %}?id={{ dish.id }}">Читать рецепт</a>
+      </ul>
+    {% endfor %}
+    <a class="button" href="{% url 'main_courses' %}">Смотреть все</a>
+  </ul>
+  <ul>
+    <h2>Салаты</h2>
+    {% for dish in dish_salads %}
+      <ul class="recipe_block">
+        <li class="name">{{dish.name}}</li>
+        <div class="photo_block">
+          <li>Ингредиенты:{{dish.ingredients|linebreaks}}</li>
+          <li class="photo"><img src="{{dish.photo.url}}" height="250" width="250"></li>
+        </div>
+        <a class="button" href="{% url 'dish' %}?id={{ dish.id }}">Читать рецепт</a>
+      </ul>
+    {% endfor %}
+    <a class="button" href="{% url 'salads' %}">Смотреть все</a>
+  </ul>
+  <ul>
+    <h2>Десерты</h2>
+    {% for dish in dish_desserts %}
+      <ul class="recipe_block">
+        <li class="name">{{dish.name}}</li>
+        <div class="photo_block">
+          <li>Ингредиенты:{{dish.ingredients|linebreaks}}</li>
+          <li class="photo"><img src="{{dish.photo.url}}" height="250" width="250"></li>
+        </div>
+        <a class="button" href="{% url 'dish' %}?id={{ dish.id }}">Читать рецепт</a>
+      </ul>
+    {% endfor %}
+    <a class="button" href="{% url 'desserts' %}">Смотреть все</a>
+  </ul>
 </div>
+
 {%endblock%}

@@ -1,0 +1,54 @@
+{%extends "base.html"%}
+{% load static %}
+{%block title%}
+<title class="new">{{ request.user.username }} - Профиль</title>
+{%endblock%}
+{%block content%}
+<main>
+
+<h1>{{ request.user.username }} - Профиль</h1>
+  {% if bookmarks %}
+    <ul class="bookmark-ul">
+        <h2>Ваши закладки:</h2>
+      {%for bookmark in bookmarks %}
+        <li>
+          <a class="bookmark-link" href="{% url 'dish' %}?id={{ bookmark.dish.id }}">
+            <span class="bookmark-img" style="background-image: url('{{ bookmark.dish.photo.url }}')"></span>
+            <span>{{ bookmark.dish }}</span>
+            <span>\\</span>
+            <span>{{ bookmark.dish.category }}</span>
+          </a>
+          <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="bookmark-img delete-bookmark" title="Удалить закладку" name="delete-bookmark" value="{{ bookmark.id }}"></button>
+          </form>
+        </li>
+      {%endfor%}
+    </ul>
+  {% else %}
+    <h2>У Вас нет закладок</h2>
+    <a class="button" href="{% url 'index' %}">Добавьте первую закладку!</a>
+  {% endif %}
+  {% if comments %}
+    <ul class="bookmark-ul">
+        <h2>Ваши комментарии:</h2>
+      {%for comment in comments %}
+        <li>
+          <a class="bookmark-link" href="{% url 'dish' %}?id={{ comment.dish.id }}">
+            <span class="bookmark-img" style="background-image: url('{{ comment.dish.photo.url }}')"></span>
+            <span>{{ comment.dish }}</span>
+            <span>\\</span>
+            <span>{{ comment.dish.category }}</span>
+            <span>::</span>
+            <span></span>
+          </a>
+          <p>{{ comment.text }}</p>
+        </li>
+      {%endfor%}
+    </ul>
+  {% else %}
+    <h2>У Вас нет комментариев</h2>
+    <a class="button" href="{% url 'index' %}">Оставьте первый комментарий!</a>
+  {% endif %}
+</main>
+{%endblock%}

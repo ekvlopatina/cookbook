@@ -7,6 +7,7 @@
     {%endblock%}
     {%load static%}
     <link href="{%static 'css/styles.css'%}" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'css/logo.png' %}" type="image/x-icon"> 
   </head>
   {%block sidebar%}
   <body class="dish">
@@ -16,6 +17,18 @@
         <li><a href="{%url 'main_courses'%}">Вторые блюда</a></li>
         <li><a href="{%url 'salads'%}">Салаты</a></li>
         <li><a href="{%url 'desserts'%}">Десерты</a></li>
+        <li><a href="{%url 'about'%}">О нас</a></li>
+        <li>
+          {% if request.user.is_authenticated%}
+          <a href="{%url 'profile'%}">Профиль</a></li>
+          {%endif%}
+        <li>
+          {% if request.user.is_authenticated%}
+            <a href="{%url 'logout'%}">Выйти</a>
+          {%else%}
+            <a href="{%url 'login'%}">Войти</a>
+          {%endif%}
+        </li>
       </ul>
     </nav>
     {%endblock%}

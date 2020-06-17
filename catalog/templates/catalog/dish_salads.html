@@ -4,9 +4,8 @@
 <title class="new">Salads</title>
 {%endblock%}
 {%block content%}
-<ul >
+<ul>
   {%for salad in dish_list%}
-  {%if salad.category.name == "Салаты"%}
     <li>
       <ul class="recipe_block">
         <li class="name">{{salad.name}}</li>
@@ -14,10 +13,9 @@
           <li>Ингредиенты: {{salad.ingredients|linebreaks}}</li>
           <li class="photo"><img src="{{salad.photo.url}}" height="250" width="250"></li>
         </div>
-        <li class="recipe">Способ приготовления: {{salad.recipe|linebreaks}}</li>
+        <li><a class="button" href="{% url 'dish' %}?id={{ salad.id }}">Читать рецепт</a></li>
       </ul>
     </li>
-  {%endif%}
   {%endfor%}
 </ul>
 {%endblock%}

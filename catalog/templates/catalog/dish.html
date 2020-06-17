@@ -1,0 +1,51 @@
+{%extends "base.html"%}
+{% load static %}
+{%block title%}
+<title class="new">Recipe</title>
+{%endblock%}
+{%block content%}
+      <ul class="recipe_block">
+        {% if request.user.is_authenticated %}
+          {% if dish_in_bookmarks %}
+            <span type="button" class="star-button" title="Добавлено в закладки"><img src="{% static 'css/star.png' %}"></span>
+          {%else%}
+            <form method="POST">
+              {% csrf_token %}
+              <button type="submit" name="bookmark_submit" class="star-button" title="Добавить в закладки"><img src="{% static 'css/star--grey.png' %}"></button>
+            </form>
+          {%endif%}
+        {% else %}
+            <button class="star-button" title="Авторизуйтесь, чтобы добавить рецепт в закладки"><img src="{% static 'css/star--grey.png' %}"></button>
+            <p class="star-comment">Авторизуйтесь, чтобы добавить рецепт в закладки</p>
+        {% endif %}
+        <li class="name"><h2>{{curr_dish.name}}</h2></li>
+        <div class="photo_block">
+          <li>Ингредиенты: {{curr_dish.ingredients|linebreaks}}</li>
+          <li class="photo"><img src="{{curr_dish.photo.url}}" height="250" width="250"></li>
+        </div>
+        <li class="recipe">Способ приготовления: {{curr_dish.recipe|linebreaks}}</li>
+      </ul>
+      <h2>Комментарии</h2>
+      {%if user_comments%}
+      <ul>
+        {% for comment in user_comments %}
+        <li>
+          <h4>{{ comment.user.username }} | {{ comment.date }}</h4>
+          <p><i>{{ comment.text }}</i></p>
+        </li>
+        {% endfor %}
+      </ul>
+      {%else%}
+        <p>Комментариев пока нет. Оставьте <i>первый</i> комментарий!</p>
+      {%endif%}
+      {% if request.user.is_authenticated %}
+      <form method="POST">
+        <h3>Оставьте Ваш комментарий:</h3>
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="button">Отправить</button>
+      </form>
+      {% else %}
+        <h3>Авторизуйтесь, чтобы оставить комментарий</h3>
+      {% endif %}
+{%endblock%}
